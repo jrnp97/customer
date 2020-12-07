@@ -1,0 +1,23 @@
+version: '3'
+services:
+ db: 
+  image: postgres:9.6
+  environment:
+   - POSTGRES_DB=customer_db
+   - POSTGRES_USER=postgres
+   - POSTGRES_PASSWORD=proof_pwd
+ web:
+  build:
+   context: .
+  entrypoint: /src/entrypoint.sh
+  environment:
+    - DB_NAME=customer_db
+    - DB_USR=postgres
+    - DB_PWD=proof_pwd
+    - DB_HOST=db
+    - DB_PORT=5432
+    - SECRET_KEY=*81n)n4g4fb-v^f4gr=xzy*n*)*&os&=fn43^q)acq4x^(lvrv
+  ports:
+    - 8000:8000
+  depends_on:
+    - db
