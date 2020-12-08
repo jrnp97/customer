@@ -6,6 +6,8 @@ COPY pj_customer/ /src/
 
 WORKDIR /src/
 
+COPY data/customers.csv /src/data/
+
 COPY requirements.txt /src/
 
 RUN pip install -r requirements.txt

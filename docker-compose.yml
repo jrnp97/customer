@@ -19,6 +19,7 @@ services:
     - DB_HOST=db
     - DB_PORT=5432
     - SECRET_KEY=*81n)n4g4fb-v^f4gr=xzy*n*)*&os&=fn43^q)acq4x^(lvrv
+    - GOOGLE_API_KEY='AIzaSyAQ9JEHot8wv_qfg9g-8tdaDNSaug0cmzI'
   ports:
     - 8000:8000
   depends_on:
