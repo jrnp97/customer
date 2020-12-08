@@ -135,3 +135,9 @@ STATIC_DIRS = [
 ]
 
 GOOGLE_API_KEY = os.getenv('GOOGLE_API_KEY')
+
+REST_FRAMEWORK = {
+    'DEFAULT_RENDERER_CLASSES': [
+        'rest_framework.renderers.JSONRenderer',
+    ]
+}

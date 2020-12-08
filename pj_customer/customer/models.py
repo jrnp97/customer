@@ -19,8 +19,8 @@ class Customer(models.Model):
     )
     last_name = models.CharField(
         max_length=100,
-        null=False,
-        blank=False,
+        null=True,
+        blank=True,
     )
     email = models.EmailField(
         max_length=100,
@@ -44,8 +44,8 @@ class Customer(models.Model):
     )
     title = models.CharField(
         max_length=200,
-        null=False,
-        blank=False,
+        null=True,
+        blank=True,
     )
     latitude = models.FloatField(
         null=True,
