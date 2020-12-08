@@ -6,6 +6,8 @@ services:
    - POSTGRES_DB=customer_db
    - POSTGRES_USER=postgres
    - POSTGRES_PASSWORD=proof_pwd
+  ports:
+  - 5432:5432
  web:
   build:
    context: .

@@ -2,16 +2,18 @@
 
 WORK_DIR=/src/
 
-python $WORK_DIR/manage.py test
-
-if [$? -eq -1]; then
-	echo 'Tests Failed';
+if python $WORK_DIR/manage.py test; then
+  echo 'Test Passed!!'
+else
+	echo 'Tests Failed'
+	exit 1
 fi
 
-python $WORK_DIR/manage.py migrate --no-input
-
-if [$? -eq -1]; then
-	echo 'Error migration';
+if python $WORK_DIR/manage.py migrate --no-input; then
+  echo 'Migrations executed!!'
+else
+	echo 'Error migration'
+	exit 1
 fi
 
 python $WORK_DIR/manage.py runserver 0.0.0.0:8000
