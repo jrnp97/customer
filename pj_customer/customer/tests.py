@@ -65,18 +65,18 @@ class TestImportCommand(TransactionTestCase):
 
     def test_file_importation_fill_database(self):
         self.create_csv_file()
-        call_command('fill_customer_data', self.test_file)
+        call_command('fill_customer_data', '--not-coordinates', self.test_file)
         self.assertEqual(Customer.objects.count(), 2)
 
     def test_import_the_same_file_two_times(self):
         self.create_csv_file()
-        call_command('fill_customer_data', self.test_file)
-        call_command('fill_customer_data', self.test_file)
+        call_command('fill_customer_data', '--not-coordinates', self.test_file)
+        call_command('fill_customer_data', '--not-coordinates', self.test_file)
         self.assertEqual(Customer.objects.count(), 2)
 
     def test_update_data(self):
         self.create_csv_file()
-        call_command('fill_customer_data', self.test_file)
+        call_command('fill_customer_data', '--not-coordinates', self.test_file)
         dummy_data = [
             [
 
@@ -111,7 +111,7 @@ class TestImportCommand(TransactionTestCase):
             ],
         ]
         self.create_csv_file(dummy_data=dummy_data)
-        call_command('fill_customer_data', self.test_file)
+        call_command('fill_customer_data', '--not-coordinates', self.test_file)
         self.assertEqual(Customer.objects.count(), 3)
         customer = Customer.objects.get(id=1)
         self.assertEqual(customer.first_name, 'Maria')
@@ -143,5 +143,3 @@ class TestImportCommand(TransactionTestCase):
             customer.longitude,
             expected_longitude,
         )
-
-        # TODO Include correct values
