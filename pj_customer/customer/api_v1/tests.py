@@ -23,6 +23,8 @@ class CustomerAPITest(TestCase):
                 'company': 'Meezzy',
                 'city': 'Warner, NH',
                 'title': 'Biostatistician III',
+                'latitude': None,
+                'longitude': None,
             },
             {
                 'id': 2,
@@ -33,6 +35,8 @@ class CustomerAPITest(TestCase):
                 'company': 'Skipfire',
                 'city': 'East Natchitoches, PA',
                 'title': 'VP Marketing',
+                'latitude': None,
+                'longitude': None,
             }
         ]
         for instance_data in self.data:
@@ -46,11 +50,9 @@ class CustomerAPITest(TestCase):
         response = self.client.get(
             path=endpoint,
         )
-        response_body = json.dumps(self.data)
-        self.assertContains(
-            response=response,
-            text=response_body,
-            status_code=status.HTTP_200_OK,
+        self.assertJSONEqual(
+            raw=response.content,
+            expected_data=self.data,
         )
 
     def test_detail_endpoint(self):
@@ -58,9 +60,7 @@ class CustomerAPITest(TestCase):
         response = self.client.get(
             path=endpoint.format(id=1),
         )
-        response_body = json.dumps(self.data[0])
-        self.assertContains(
-            response=response,
-            text=response_body,
-            status_code=status.HTTP_200_OK,
+        self.assertJSONEqual(
+            raw=response.content,
+            expected_data=self.data[0],
         )
